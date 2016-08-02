@@ -1,4 +1,3 @@
-require_relative 'htmlifier'
 require 'text-table'
 require 'erb'
 

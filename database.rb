@@ -3,7 +3,6 @@ require_relative 'menu'
 require_relative 'display'
 require 'csv'
 
-
 class Database
   attr :people
 
