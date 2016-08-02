@@ -37,8 +37,8 @@
     <div class="container">
       <div class="row">
         <article class="col-md-4 article-intro">
-          
-          <h1 class="page-header">Instructor</h1>
+          <% @report_data.each do |position, data| %>
+          <h1 class="page-header"><%=position%></h1>
           <table>
               <tr>
                 <th>Minimum Salary</th>
@@ -46,83 +46,21 @@
                 <th>Average Salary</th>
               </tr>
               <tr>
-                <td>$500000.0</td>
-                <td>$2000000.0</td>
-                <td>$1166666.67</td>
+                <td>$<%=data["min_salary"].round(2)%></td>
+                <td>$<%=data["max_salary"].round(2)%></td>
+                <td>$<%=data["avg_salary"].round(2)%></td>
               </tr>
               <tr>
-                <th>Instructors</th>
-                <td>3</td>
+                <th><%=position%>s</th>
+                <td><%=data["num_employees"]%></td>
               </tr>
           </table>
           <ul>
-            
-            <li>Gavin</li>
-            
-            <li>Jason</li>
-            
-            <li>Hubert</li>
-            
+            <% data["names"].each do |name| %>
+            <li><%=name%></li>
+            <% end %>
           </ul>
-          
-          <h1 class="page-header">Student</h1>
-          <table>
-              <tr>
-                <th>Minimum Salary</th>
-                <th>Maximum Salary</th>
-                <th>Average Salary</th>
-              </tr>
-              <tr>
-                <td>$20.0</td>
-                <td>$200.0</td>
-                <td>$64.0</td>
-              </tr>
-              <tr>
-                <th>Students</th>
-                <td>7</td>
-              </tr>
-          </table>
-          <ul>
-            
-            <li>Alan</li>
-            
-            <li>Jon</li>
-            
-            <li>Bonnie</li>
-            
-            <li>Adam</li>
-            
-            <li>Rob</li>
-            
-            <li>Phillip</li>
-            
-            <li>Wonder Billy</li>
-            
-          </ul>
-          
-          <h1 class="page-header">Campus Director</h1>
-          <table>
-              <tr>
-                <th>Minimum Salary</th>
-                <th>Maximum Salary</th>
-                <th>Average Salary</th>
-              </tr>
-              <tr>
-                <td>$300000.0</td>
-                <td>$300000.0</td>
-                <td>$300000.0</td>
-              </tr>
-              <tr>
-                <th>Campus Directors</th>
-                <td>1</td>
-              </tr>
-          </table>
-          <ul>
-            
-            <li>Toni</li>
-            
-          </ul>
-          
+          <% end %>
       </article>
       </div>
     </div>

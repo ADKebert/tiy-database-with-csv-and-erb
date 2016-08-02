@@ -1,8 +1,10 @@
 require_relative 'htmlifier'
 require 'text-table'
+require 'erb'
 
 class Report
   REPORT_HEADER = "Salary Report"
+  ERB_HTML = File.read("template.html.erb")
 
   def initialize(employees)
     @report_data = {}
@@ -76,26 +78,8 @@ class Report
 
   def html_report
     File.open("report.html", "w") do |report_file|
-      report = Htmlifier.new
-      report.title = REPORT_HEADER
-      report.add_line(report.h1(REPORT_HEADER))
-      @report_data.each do |position, data|
-        report.add_line(report.div_start("report-block"))
-        report.add_line(report.h2("Position: #{position}"))
-        report.add_line(report.ul_start)
-        report.add_line(report.li(report.p("Salary Min: #{data["min_salary"].round(2)}")))
-        report.add_line(report.li(report.p("Max: #{data["max_salary"].round(2)}")))
-        report.add_line(report.li(report.p("Average: #{data["avg_salary"].round(2)}")))
-        report.add_line(report.ul_end)
-        report.add_line(report.p("Number of employees: #{data["num_employees"]}"))
-        report.add_line(report.p("Names:"))
-        report.add_line(report.ul_start)
-        data["names"].each do |name|
-          report.add_line(report.li(report.p(name)))
-        end
-        report.add_line(report.ul_end)
-      end
-      report_file.puts report
+      html_template = ERB.new(ERB_HTML)
+      report_file.puts html_template.result(binding)
     end
   end
 
