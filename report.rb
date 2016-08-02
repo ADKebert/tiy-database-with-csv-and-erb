@@ -80,6 +80,7 @@ class Report
     File.open("report.html", "w") do |report_file|
       html_template = ERB.new(ERB_HTML)
       report_file.puts html_template.result(binding)
+      %x(open report.html)
     end
   end
 
