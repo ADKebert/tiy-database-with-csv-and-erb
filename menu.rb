@@ -18,17 +18,19 @@ class Menu
     @database = database
   end
 
-  def response_to_main_prompt
-    @main_options.each do |option|
+  def print_options(options)
+    options.each do |option|
       puts option
     end
+  end
+
+  def response_to_main_prompt
+    print_options(@main_options)
     gets.chomp.downcase
   end
 
   def response_to_report_prompt
-    @report_options.each do |option|
-      puts option
-    end
+    print_options(@report_options)
     gets.chomp.downcase
   end
 
